@@ -20,21 +20,65 @@ var library = {
                       name: "Other Playlist",
                       tracks: ["t03"]
                     }
-             }
-}
-
-
-
-var printPlaylists = function (library) {
+             },
+  printPlaylists : function () {
   var str = '';
-  for (p in library.playlists) {
+  for (p in this.playlists) {
     var p = p;
-    var value = p + ": " + library.playlists[p].name + " - " +library.playlists[p].tracks.length;
+    var value = p + ": " + this.playlists[p].name + " - " +this.playlists[p].tracks.length;
     str += value + '\n';
     
   }
   return str;
+
+
+},
+
+printPlaylist : function () {
+  var myArray =[];
+  for (t in this.playlists) {
+      var t = t;
+      var value = this.playlists[t].tracks;
+      for (i of value) {
+        myArray.push(i + ": " + this.tracks[i].name + "by" + this.tracks[i].artist + "(" + this.tracks[i].album + ")");
+      }
+  return myArray;
+ }
+
+},
+printTracks : function () {
+  var str = ""
+  for (t in this.tracks) {
+      var t = t;
+      console.log(t);
+      var value = t + ": " + this.tracks[t].name + " by " + this.tracks[t].artist;
+      str += value + '\n';
+      
+    }
+  return str;
+},
+
+
+
 }
+
+console.log(library.printPlaylists());
+console.log(library.printPlaylist());
+console.log(library.printTracks());
+console.log(library.addTrackToPlaylist());
+
+
+
+// var printPlaylists = function (library) {
+//   var str = '';
+//   for (p in library.playlists) {
+//     var p = p;
+//     var value = p + ": " + library.playlists[p].name + " - " +library.playlists[p].tracks.length;
+//     str += value + '\n';
+    
+//   }
+//   return str;
+// }
 
 // prints a list of all tracks, in the form:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
@@ -53,13 +97,13 @@ var printTracks = function (library) {
   return str;
 }
 
-console.log(printTracks(library));
+//console.log(printTracks(library));
 
 // prints a list of tracks for a given playlist, in the form:
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
-console.log(library.tracks);
+//console.log(library.tracks);
 
 
 
@@ -74,7 +118,7 @@ var printPlaylist = function (playlistId) {
  }
 
 }
-printPlaylist(library);
+//printPlaylist(library);
 
 
 // adds an existing track to an existing playlist
@@ -86,7 +130,7 @@ var addTrackToPlaylist = function (trackId, playlistId) {
 
 }
 
-addTrackToPlaylist("t03", "p01");
+//addTrackToPlaylist("t03", "p01");
 
 // generates a unique id
 // (use this for addTrack and addPlaylist)
@@ -103,8 +147,8 @@ var addTrack = function (name, artist, album) {
     album: album};
 
 }
-console.log(addTrack('',"adele", "hello" ));
-console.log(library);
+//console.log(addTrack('',"adele", "hello" ));
+//console.log(library);
 
 // adds a playlist to the library
 
@@ -112,8 +156,8 @@ var addPlaylist = function (name) {
   return library.playlists[uid()] = {name: name};
 }
 
-console.log(addPlaylist("adele"));
-console.log(library);
+//console.log(addPlaylist("adele"));
+//console.log(library);
 // STRETCH:
 // given a query string string, prints a list of tracks
 // where the name, artist or album contains the query string (case insensitive)
